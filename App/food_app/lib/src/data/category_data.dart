@@ -31,14 +31,14 @@ final categories = [
     imagePath: "assets/images/cheeseburger.png",
     numberOfItems: 43,
   ),
-//  Category(
-//    categoryName: "Breakfast",
-//    imagePath: "assets/images/breakfast.png",
-//    numberOfItems: 43,
-//  ),
-//  Category(
-//    numberOfItems: 43,
-//    categoryName: "Turkey",
-//    imagePath: "assets/images/turkey.png",
-//  ),
+  Category(
+    categoryName: "Breakfast",
+    imagePath: "assets/images/breakfast.png",
+    numberOfItems: 43,
+  ),
+  Category(
+    numberOfItems: 43,
+    categoryName: "Turkey",
+    imagePath: "assets/images/turkey.png",
+  ),
 ];

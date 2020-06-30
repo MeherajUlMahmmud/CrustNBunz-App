@@ -19,7 +19,7 @@ class App extends StatelessWidget {
           primaryColor: Colors.blueAccent,
         ),
 //        home: MainScreen(model: mainModel),
-      home: AddFoodItem(),
+        home: AddFoodItem(),
       ),
     );
   }

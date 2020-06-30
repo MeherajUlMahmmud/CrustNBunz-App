@@ -40,43 +40,8 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
               child: Column(
                 children: <Widget>[
-//                  FoodCategory(),
-//                  SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Frequently bought items",
-                        style: frequentTextStyle,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          "View all",
-                          style: viewAllTextStyle,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 15.0),
-                  ScopedModelDescendant<MainModel>(
-                    builder: (BuildContext context, Widget child, MainModel model) {
-                      return Column(
-                        children: model.foods
-                            .map(_buildFoodItems)
-                            .toList(),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              child: Column(
-                children: <Widget>[
-//                  FoodCategory(),
-//                  SizedBox(height: 10.0),
+                  FoodCategory(),
+                  SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[

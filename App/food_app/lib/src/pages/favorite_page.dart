@@ -29,10 +29,12 @@ class _FavoritePageState extends State<FavoritePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Categories",
+          "Explore Foods",
           style: TextStyle(
             color: Colors.black,
           ),
@@ -41,54 +43,89 @@ class _FavoritePageState extends State<FavoritePage> {
         backgroundColor: Colors.white,
         elevation: 0.0,
       ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-//          FoodCategory(),
-          OrderCard(),
-          OrderCard(),
-          OrderCard(),
-          OrderCard(),
-          OrderCard(),
-        ],
-      ),
-//      body: SafeArea(
-//        child: SingleChildScrollView(
-//          child: Column(
-//            children: <Widget>[
-//              Container(
-//                margin: EdgeInsets.all(10.0),
-//                child: Text(
-//                  "Categories",
-//                  style: TextStyle(
-//                    fontSize: 22.0,
-//                    fontWeight: FontWeight.bold,
-//                  ),
+      body: Container(
+        height: 140.0,
+//        color: Colors.red,
+//        decoration: BoxDecoration(
+//          borderRadius: BorderRadius.circular(10.0),
+//          boxShadow: [
+//            BoxShadow(
+//              offset: Offset(0, 0.5),
+//              blurRadius: 5.0,
+//              color: Colors.black38,
+//            ),
+//          ],
+//        ),
+        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        child: Card(
+          child: Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+//                height: 90.0,
+                width: size.width * 0.3,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/breakfast.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Container(
+//                color: Colors.yellow,
+                width: size.width * 0.55,
+                margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Name",
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        SizedBox(height: 40.0, child: Text("This is the description. It might be long. It might be long.")),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "250.0",
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                        SmallButton(btnText: "Buy Now"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+//            Positioned(
+//              right: 0.0,
+//              width: MediaQuery.of(context).size.width * 0.7,
+//              height: 120.0,
+//              child: Card(
+//                child: Container(
 //                ),
 //              ),
-//              Container(
-//                margin: EdgeInsets.all(10.0),
-//                child: SearchField(),
-//              ),
-//              FoodCategory(),
-////            ListView(
-////              children: <Widget>[
-//////                FoodCategory(),
-////              ],
-////            ),
-////            ScopedModelDescendant<CategoryScopedModel>(
-////              builder: (BuildContext context, Widget child,
-////                  CategoryScopedModel model) {
-////                return Column(
-////                  children: model.categories.map(_buildCategoryItems).toList(),
-////                );
-////              },
-////            )
-//            ],
-//          ),
-//        ),
-//      ),
+//            ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

@@ -10,9 +10,9 @@ class FoodCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height * 0.1,
       child: ListView.builder(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         itemCount: _categories.length,
         itemBuilder: (BuildContext context, int index) {
           return CategoryCard(

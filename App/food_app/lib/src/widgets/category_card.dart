@@ -8,15 +8,16 @@ class CategoryCard extends StatelessWidget {
   final String imagePath;
   final int numberOfItems;
 
-  CategoryCard({
-    this.id,this.categoryName, this.imagePath, this.numberOfItems});
+  CategoryCard(
+      {this.id, this.categoryName, this.imagePath, this.numberOfItems});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
+      child: Container(
+        padding: EdgeInsets.all(5.0),
+        height: 70.0,
         child: Row(
           children: <Widget>[
             Image(
@@ -24,7 +25,9 @@ class CategoryCard extends StatelessWidget {
               height: 65.0,
               width: 75.0,
             ),
-            SizedBox(width: 10.0,),
+            SizedBox(
+              width: 5.0,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

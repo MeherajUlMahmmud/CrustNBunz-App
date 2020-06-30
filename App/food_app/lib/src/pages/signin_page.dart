@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/src/widgets/button.dart';
 
 import '../pages/signup_page.dart';
 
@@ -63,21 +64,7 @@ class _SignInPageState extends State<SignInPage> {
                 borderRadius: BorderRadius.circular(30.0),
                 color: Colors.blueAccent,
               ),
-              child: Material(
-                elevation: 5.0,
-                borderRadius: BorderRadius.circular(30.0),
-                color: Colors.blueAccent,
-                child: Center(
-                  child: Text(
-                    "Sign In",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+              child: Button(btnText: "Sign In",),
             ),
             Divider(
               height: 25.0,

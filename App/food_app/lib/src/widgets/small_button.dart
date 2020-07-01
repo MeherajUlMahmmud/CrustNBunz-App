@@ -21,7 +21,6 @@ class SmallButton extends StatelessWidget {
         child: Text(
           "$btnText",
           style: TextStyle(
-            fontSize: 16.0,
             fontWeight: FontWeight.bold,
             color: Colors.blueAccent,
           ),

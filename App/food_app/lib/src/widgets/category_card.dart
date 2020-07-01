@@ -14,7 +14,6 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5.0,
       child: Container(
         padding: EdgeInsets.all(5.0),
         height: 70.0,

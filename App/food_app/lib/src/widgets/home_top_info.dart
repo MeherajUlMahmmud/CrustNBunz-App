@@ -13,7 +13,7 @@ class HomeTopInfo extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: size.height * 0.2 + 60,
+            height: size.height * 0.2 + 30,
             decoration: BoxDecoration(
               color: Colors.blueAccent,
               borderRadius: BorderRadius.only(
@@ -37,7 +37,7 @@ class HomeTopInfo extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text("What are", style: titleStyle),

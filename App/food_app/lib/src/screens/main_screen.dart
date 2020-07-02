@@ -4,7 +4,7 @@ import 'package:foodapp/src/scoped_model/food_model.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import '../pages/home_page.dart';
 import '../pages/order_page.dart';
-import '../pages/favorite_page.dart';
+import '../pages/explore_page.dart';
 import '../pages/person_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget currentPage;
   HomePage homePage;
   OrderPage orderPage;
-  FavoritePage favoritePage;
+  ExplorePage explorePage;
   PersonPage personPage;
 
   @override
@@ -33,9 +33,9 @@ class _MainScreenState extends State<MainScreen> {
 
     homePage = HomePage();
     orderPage = OrderPage();
-    favoritePage = FavoritePage();
+    explorePage = ExplorePage(model: widget.model);
     personPage = PersonPage();
-    pages = [homePage, favoritePage, orderPage, personPage];
+    pages = [homePage, explorePage, orderPage, personPage];
 
     currentPage = homePage;
     super.initState();
@@ -47,6 +47,12 @@ class _MainScreenState extends State<MainScreen> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
+          title: Text(
+              currentTabIndex == 0 ? "Food App" :
+              currentTabIndex == 1 ? "Explore Foods" :
+              currentTabIndex == 2 ? "Food Cart" :
+              "Profile",),
+          centerTitle: true,
         ),
         drawer: Drawer(
           child: Column(
@@ -115,8 +121,12 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
-        body: currentPage,
-      ),
+        body
+            :
+        currentPage
+        ,
+      )
+      ,
     );
   }
 }

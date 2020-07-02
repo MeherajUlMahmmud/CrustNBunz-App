@@ -61,17 +61,17 @@ class FoodModel extends Model {
       final http.Response response = await http
           .get("https://fooddelivery-7571a.firebaseio.com/foods.json");
 
-      final Map<String, dynamic> fetchData = json.decode(response.body);
+      final Map<String, dynamic> fetchedData = json.decode(response.body);
       final List<Food> fetchedFoodItems = [];
 
-      fetchData.forEach((String id, dynamic foodData) {
+      fetchedData.forEach((String id, dynamic foodData) {
         Food food = Food(
           id: id,
           name: foodData["title"],
           category: foodData["category"],
           description: foodData["description"],
-          price: foodData["price"],
-          discount: foodData["discount"],
+          price: double.parse(foodData["price"]),
+          discount: double.parse(foodData["discount"]),
 //          imagePath: foodData["image_path"],
 //          ratings: double.parse(foodData["ratings"]),
         );

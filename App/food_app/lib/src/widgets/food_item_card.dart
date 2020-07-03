@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/src/widgets/small_button.dart';
 
 class FoodItemCard extends StatelessWidget {
-
   final String title;
   final String description;
   final String price;
+  final String discount;
 
-  FoodItemCard(this.title, this.description, this.price);
+  FoodItemCard(this.title, this.description, this.price, this.discount);
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +64,31 @@ class FoodItemCard extends StatelessWidget {
                       SizedBox(
                         height: 5.0,
                       ),
-                      Text(
-                          "$description"),
+                      Text("$description"),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        "\u09F3 $price",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blueAccent,
-                        ),
+                      Row(
+                        children: <Widget>[
+                          
+                          Text(
+                            price == discount ? "\u09F3 $price " : "\u09F3 $discount ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                          Text(
+                            price == discount ? "" : "\u09F3 $price",
+                            style: TextStyle(
+                              fontSize: 14,
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
                       ),
                       SmallButton(btnText: "Buy Now"),
                     ],

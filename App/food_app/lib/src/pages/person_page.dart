@@ -50,13 +50,15 @@ class _PersonPageState extends State<PersonPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Meheraj Mahmmud",
+                          "Meheraj Ul Mahmmud",
                           style: TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
-                          overflow: TextOverflow.clip,
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.fade,
                         ),
                         Text(
                           "Username",

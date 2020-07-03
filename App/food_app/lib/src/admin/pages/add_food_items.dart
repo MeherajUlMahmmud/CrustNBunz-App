@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/src/models/food_model.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import 'package:foodapp/src/widgets/button.dart';
+import 'package:foodapp/src/widgets/show-dialog.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class AddFoodItem extends StatefulWidget {
+  final Food food;
+
+  AddFoodItem({this.food});
+
   @override
   _AddFoodItemState createState() => _AddFoodItemState();
 }
@@ -21,9 +26,7 @@ class _AddFoodItemState extends State<AddFoodItem> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       key: _scaffoldStateKey,
@@ -63,12 +66,19 @@ class _AddFoodItemState extends State<AddFoodItem> {
                       (BuildContext context, Widget child, MainModel model) {
                     return GestureDetector(
                       onTap: () {
-                        onSubmit(model.addFood);
+                        onSubmit(model.addFood, model.updateFood);
                         if (model.isLoading) {
-                          showLoadingIndicator();
+                          showLoadingIndicator(
+                              context,
+                              widget.food != null
+                                  ? "Updating Food Item..."
+                                  : "Adding Food Item...");
                         }
                       },
-                      child: Button(btnText: "Add Food"),
+                      child: Button(
+                          btnText: widget.food != null
+                              ? "Update Food Item"
+                              : "Add Food"),
                     );
                   }),
                   SizedBox(
@@ -83,52 +93,82 @@ class _AddFoodItemState extends State<AddFoodItem> {
     );
   }
 
-  void onSubmit(Function addFood) async {
+  void onSubmit(Function addFood, Function updateFood) async {
     if (_foodItemKey.currentState.validate()) {
       _foodItemKey.currentState.save();
 
-      final Food food = Food(
-        name: title,
-        category: cat,
-        description: desc,
-        price: double.parse(price),
-        discount: double.parse(discount),
-      );
-      bool value = await addFood(food);
-      if(value) {
-        Navigator.of(context).pop();
-        SnackBar snackBar = SnackBar(
-          content: Text("Food item successfully added.")
+      if (widget.food != null) {
+        // I want to update the food item
+        Map<String, dynamic> updatedFoodItem = {
+          "title": title,
+          "category": cat,
+          "description": desc,
+          "price": double.parse(price),
+          "discount": double.parse(discount),
+        };
+
+        final bool response = await updateFood(updatedFoodItem, widget.food.id);
+        if (response) {
+          Navigator.of(context).pop(); // to remove the alert Dialog
+          Navigator.of(context).pop(response); // to the previous page
+        } else if (!response) {
+          Navigator.of(context).pop();
+          SnackBar snackBar = SnackBar(
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.red,
+            content: Text(
+              "Failed to update food item",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
+          );
+          _scaffoldStateKey.currentState.showSnackBar(snackBar);
+        }
+      } else if (widget.food == null) {
+        final Food food = Food(
+          name: title,
+          category: cat,
+          description: desc,
+          price: double.parse(price),
+          discount: double.parse(discount),
         );
-        _scaffoldStateKey.currentState.showSnackBar(snackBar);
-      }
-      else if(!value) {
-        Navigator.of(context).pop();
-        SnackBar snackBar = SnackBar(
-            content: Text("Failed to add food item.")
-        );
-        _scaffoldStateKey.currentState.showSnackBar(snackBar);
+        bool value = await addFood(food);
+        if (value) {
+          Navigator.of(context).pop();
+          SnackBar snackBar = SnackBar(
+            content: Text("Food item successfully added."),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.blueAccent,
+          );
+          _scaffoldStateKey.currentState.showSnackBar(snackBar);
+        } else if (!value) {
+          Navigator.of(context).pop();
+          SnackBar snackBar = SnackBar(
+            content: Text("Failed to add food item."),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.red,
+          );
+          _scaffoldStateKey.currentState.showSnackBar(snackBar);
+        }
       }
     }
   }
 
-  Future<void> showLoadingIndicator() {
-    return showDialog(context: context, barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: Row(
-              children: <Widget>[
-                CircularProgressIndicator(),
-                SizedBox(width: 10.0,),
-                Text("Adding new food item...")
-              ],
-            ),
-          );
-        });
-  }
-
   Widget _buildTextFormField(String hint, {int maxLine = 1}) {
     return TextFormField(
+      initialValue: widget.food != null && hint == "Food name"
+          ? widget.food.name
+          : widget.food != null && hint == "Category"
+              ? widget.food.category
+              : widget.food != null && hint == "Description"
+                  ? widget.food.description
+                  : widget.food != null && hint == "Price"
+                      ? widget.food.price.toString()
+                      : widget.food != null && hint == "Discount"
+                          ? widget.food.discount.toString()
+                          : "",
       decoration: InputDecoration(
         hintText: hint,
       ),
@@ -153,8 +193,9 @@ class _AddFoodItemState extends State<AddFoodItem> {
         if (value.isEmpty && hint == "Discount") {
           return "A " + hint + " is required";
         }
+//        return "";
       },
-      onChanged: (String value) {
+      onSaved: (String value) {
         if (hint == "Food name") {
           title = value;
         }

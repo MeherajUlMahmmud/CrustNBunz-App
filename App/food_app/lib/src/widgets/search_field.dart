@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/global.dart';
 
 class SearchField extends StatelessWidget {
   @override
@@ -16,7 +15,11 @@ class SearchField extends StatelessWidget {
             elevation: 5.0,
             borderRadius: BorderRadius.circular(30.0),
             child: IconButton(
-              icon: Icon(Icons.search, color: Colors.black,),
+              icon: Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+              onPressed: () {},
             ),
           ),
           border: InputBorder.none,

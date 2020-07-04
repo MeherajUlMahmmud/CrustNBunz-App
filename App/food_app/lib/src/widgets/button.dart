@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
       child: Material(
         elevation: 5.0,
         borderRadius: BorderRadius.circular(30.0),
-        color: Colors.blueAccent,
+        color: Theme.of(context).primaryColor,
         child: Center(
           child: Text(
             "$btnText",

@@ -70,7 +70,7 @@ class FoodModel extends Model {
 
       // print("Fecthing data: ${response.body}");
       final Map<String, dynamic> fetchedData = json.decode(response.body);
-      print(fetchedData);
+      // print(fetchedData);
 
       final List<Food> foodItems = [];
 

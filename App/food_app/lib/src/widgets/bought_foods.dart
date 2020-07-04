@@ -27,7 +27,6 @@ class _BoughtFoodsState extends State<BoughtFoods> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -118,19 +117,38 @@ class _BoughtFoodsState extends State<BoughtFoods> {
                 Column(
                   children: <Widget>[
                     Text(
-                      "1.0",
+                      widget.price == widget.discount
+                          ? "\u09F3 " + widget.price.toString()
+                          : "\u09F3 " + widget.discount.toString(),
                       style: TextStyle(
-                        color: Colors.white,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     Text(
-                      "Min Order",
+                      widget.price == widget.discount
+                          ? ""
+                          : "\u09F3 " + widget.price.toString(),
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 14.0,
+                        decoration: TextDecoration.lineThrough,
+                        color: Colors.white60,
                       ),
                     ),
+//                    Text("\u09F3 " + widget.price.toString(),
+//                      style: TextStyle(
+//                        color: Colors.white,
+//                        fontWeight: FontWeight.bold,
+//                      ),
+//                    ),
+//                    Text(
+//                      "Min Order",
+//                      style: TextStyle(
+//                        color: Colors.white,
+//                        fontWeight: FontWeight.bold,
+//                      ),
+//                    ),
                   ],
                 ),
               ],

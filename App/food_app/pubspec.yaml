@@ -45,6 +45,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/grocery/
 #  fonts:
 #    - family: Nunito
 #      fonts:

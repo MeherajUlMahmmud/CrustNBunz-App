@@ -29,6 +29,7 @@ class FoodItemCard extends StatelessWidget {
       margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
       child: Card(
         elevation: 3.0,
+        color: Colors.lightGreen[50],
         child: Row(
           children: <Widget>[
             Container(
@@ -72,12 +73,13 @@ class FoodItemCard extends StatelessWidget {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          
                           Text(
-                            price == discount ? "\u09F3 $price " : "\u09F3 $discount ",
+                            price == discount
+                                ? "\u09F3 $price "
+                                : "\u09F3 $discount ",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Colors.blueAccent,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                           Text(
@@ -90,7 +92,7 @@ class FoodItemCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SmallButton(btnText: "Buy Now"),
+                      SmallButton(btnText: "Bag it"),
                     ],
                   ),
                 ],

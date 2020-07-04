@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodapp/global.dart';
-import 'package:foodapp/src/scoped_model/food_model.dart';
+import 'package:foodapp/src/pages/food_details_page.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import 'package:foodapp/src/widgets/home_top_info.dart';
 import 'package:foodapp/src/widgets/food_category.dart';
 import 'package:scoped_model/scoped_model.dart';
-import '../widgets/search_field.dart';
 import '../widgets/bought_foods.dart';
 import '../models/food_model.dart';
 
@@ -30,7 +29,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-//          padding: EdgeInsets.only(top: 20.0, left: 15.0, right: 15.0),
           children: <Widget>[
             HomeTopInfo(),
 //            SearchField(),
@@ -38,7 +36,6 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(left: 15.0, right: 15.0),
               child: Column(
                 children: <Widget>[
-                  FoodCategory(),
                   SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,11 +55,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 15.0),
                   ScopedModelDescendant<MainModel>(
-                    builder: (BuildContext context, Widget child, MainModel model) {
+                    builder:
+                        (BuildContext context, Widget child, MainModel model) {
                       return Column(
-                        children: model.foods
-                            .map(_buildFoodItems)
-                            .toList(),
+                        children: model.foods.map(_buildFoodItems).toList(),
                       );
                     },
                   ),
@@ -76,16 +72,23 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildFoodItems(Food food) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 15.0),
-      child: BoughtFoods(
-        id: food.id,
-        imagePath: food.imagePath,
-        name: food.name,
-        category: food.category,
-        price: food.price,
-        discount: food.discount,
-        ratings: food.ratings,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => FoodDetailsPage(),
+        ));
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 15.0),
+        child: BoughtFoods(
+          id: food.id,
+          imagePath: "assets/images/lunch.jpeg",
+          name: food.name,
+          category: food.category,
+          price: food.price,
+          discount: food.discount,
+          ratings: food.ratings,
+        ),
       ),
     );
   }

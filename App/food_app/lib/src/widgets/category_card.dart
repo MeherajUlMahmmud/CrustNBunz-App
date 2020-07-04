@@ -3,43 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/global.dart';
 
 class CategoryCard extends StatelessWidget {
-  final String id;
   final String categoryName;
-  final String imagePath;
-  final int numberOfItems;
 
-  CategoryCard(
-      {this.id, this.categoryName, this.imagePath, this.numberOfItems});
+  CategoryCard(this.categoryName);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        padding: EdgeInsets.all(5.0),
-        height: 70.0,
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      height: 80.0,
+      margin: EdgeInsets.only(left: 8.0, right: 8.0),
+      child: Card(
         child: Row(
           children: <Widget>[
-            Image(
-              image: AssetImage(imagePath),
-              height: 65.0,
-              width: 75.0,
+            Container(
+              margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+              height: 40.0,
+              width: 40.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/burger.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SizedBox(
               width: 5.0,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  categoryName,
-                  style: cardTextStyle,
-                ),
-                Text(
-                  "$numberOfItems Kinds",
-                ),
-              ],
+            Text(
+              categoryName,
+              style: cardTextStyle,
             ),
+            Spacer(),
+            IconButton(
+              icon: Icon(
+                Icons.keyboard_arrow_right,
+                size: 30.0,
+                color: Colors.lightGreen,
+              ),
+              onPressed: () {},
+            )
           ],
         ),
       ),

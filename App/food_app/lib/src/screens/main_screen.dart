@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/src/admin/pages/add_category_item.dart';
 import 'package:foodapp/src/admin/pages/add_food_items.dart';
-import 'package:foodapp/src/scoped_model/food_model.dart';
+import 'package:foodapp/src/pages/category_page.dart';
+import 'package:foodapp/src/pages/new_home_page.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import '../pages/home_page.dart';
 import '../pages/order_page.dart';
@@ -27,6 +29,9 @@ class _MainScreenState extends State<MainScreen> {
   ExplorePage explorePage;
   PersonPage personPage;
 
+  MainPage mainPage;
+  CategoryPage categoryPage;
+
   @override
   void initState() {
     widget.model.fetchFood();
@@ -35,9 +40,11 @@ class _MainScreenState extends State<MainScreen> {
     orderPage = OrderPage();
     explorePage = ExplorePage(model: widget.model);
     personPage = PersonPage();
-    pages = [homePage, explorePage, orderPage, personPage];
+    mainPage = MainPage();
+    categoryPage = CategoryPage(model: widget.model);
+    pages = [mainPage, categoryPage, orderPage, personPage];
 
-    currentPage = homePage;
+    currentPage = mainPage;
     super.initState();
   }
 
@@ -48,11 +55,27 @@ class _MainScreenState extends State<MainScreen> {
         appBar: AppBar(
           elevation: 0.0,
           title: Text(
-              currentTabIndex == 0 ? "Food App" :
-              currentTabIndex == 1 ? "Explore Foods" :
-              currentTabIndex == 2 ? "Food Cart" :
-              "Profile",),
+            currentTabIndex == 0
+                ? "Food App"
+                : currentTabIndex == 1
+                    ? "Explore Foods"
+                    : currentTabIndex == 2 ? "Food Cart" : "Profile",
+          ),
           centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+              ),
+              onPressed: () {},
+            ),
+//            IconButton(
+//              icon: Icon(
+//                Icons.shopping_basket,
+//              ),
+//              onPressed: () {},
+//            )
+          ],
         ),
         drawer: Drawer(
           child: Column(
@@ -65,68 +88,78 @@ class _MainScreenState extends State<MainScreen> {
                 },
                 leading: Icon(Icons.add),
                 title: Text("Add food item"),
+              ),
+              ListTile(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => AddCategoryItem()));
+                },
+                leading: Icon(Icons.add),
+                title: Text("Add category item"),
               )
             ],
           ),
         ),
-        bottomNavigationBar: Container(
-          margin: EdgeInsets.only(left: 5.0, right: 5.0, bottom: 5.0),
-          child: BottomNavigationBar(
-            onTap: (int index) {
-              setState(() {
-                currentTabIndex = index;
-                currentPage = pages[index];
-              });
-            },
-            elevation: 5.0,
-            backgroundColor: Colors.transparent,
-            currentIndex: currentTabIndex,
-            type: BottomNavigationBarType.shifting,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.black38,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedIconTheme: IconThemeData(
-              size: 25.0,
-              color: Colors.black,
-            ),
-            unselectedIconTheme: IconThemeData(
-              size: 20.0,
-            ),
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                title: Text("Home"),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.explore,
-                ),
-                title: Text("Explore"),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.shopping_cart,
-                ),
-                title: Text("Orders"),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
-                ),
-                title: Text("Profile"),
-              )
-            ],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            setState(() {
+              currentTabIndex = index;
+              currentPage = pages[index];
+            });
+          },
+          elevation: 5.0,
+          backgroundColor: Colors.transparent,
+          currentIndex: currentTabIndex,
+          type: BottomNavigationBarType.shifting,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black38,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedLabelStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 12.0,
           ),
+          unselectedLabelStyle: TextStyle(
+            color: Colors.black38,
+            fontSize: 10.0,
+          ),
+          selectedIconTheme: IconThemeData(
+            size: 25.0,
+            color: Colors.black,
+          ),
+          unselectedIconTheme: IconThemeData(
+            size: 20.0,
+          ),
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+              ),
+              title: Text("Home"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.widgets,
+              ),
+              title: Text("Category"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_basket,
+              ),
+              title: Text("Orders"),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              title: Text("Profile"),
+            )
+          ],
         ),
-        body
-            :
-        currentPage
-        ,
-      )
-      ,
+        body: currentPage,
+      ),
     );
   }
 }

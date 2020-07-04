@@ -13,7 +13,7 @@ class SmallButton extends StatelessWidget {
 //      width: 60.0,
       decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.blueAccent,
+            color: Theme.of(context).primaryColor,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(15.0)),
@@ -22,7 +22,9 @@ class SmallButton extends StatelessWidget {
           "$btnText",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.blueAccent,
+            color: Theme
+                .of(context)
+                .primaryColor,
           ),
         ),
       ),

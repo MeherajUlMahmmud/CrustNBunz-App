@@ -58,13 +58,8 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(
               height: 15.0,
             ),
-            Container(
-              height: 50.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.0),
-                color: Colors.blueAccent,
-              ),
-              child: Button(btnText: "Sign In",),
+            Button(
+              btnText: "Sign In",
             ),
             Divider(
               height: 25.0,
@@ -91,9 +86,11 @@ class _SignInPageState extends State<SignInPage> {
                   child: Text(
                     "Sign Up",
                     style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueAccent),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                      color: Theme
+                          .of(context)
+                          .primaryColor,),
                   ),
                 )
               ],

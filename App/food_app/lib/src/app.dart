@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/src/pages/new_home_page.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'screens/main_screen.dart';
@@ -15,10 +16,11 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Food App',
         theme: ThemeData(
-          primaryColor: Colors.blueAccent,
+          primaryColor: Colors.lightGreen,
         ),
         home: MainScreen(model: mainModel),
 //        home: AddFoodItem(),
+        // home: MainPage(),
       ),
     );
   }

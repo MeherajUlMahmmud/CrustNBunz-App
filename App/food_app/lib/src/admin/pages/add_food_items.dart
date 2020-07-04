@@ -193,6 +193,12 @@ class _AddFoodItemState extends State<AddFoodItem> {
         if (value.isEmpty && hint == "Discount") {
           return "A " + hint + " is required";
         }
+        if (double.parse(value) <= 0.0 && hint == "Price") {
+          return "Price must be greater than 0.0";
+        }
+        if (double.parse(value) < 0.0 && hint == "Discount") {
+          return "Discount could not be Negative";
+        }
 //        return "";
       },
       onSaved: (String value) {

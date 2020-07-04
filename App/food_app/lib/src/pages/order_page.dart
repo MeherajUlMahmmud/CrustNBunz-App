@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/src/pages/signin_page.dart';
-import 'package:foodapp/src/pages/signup_page.dart';
 import 'package:foodapp/src/widgets/button.dart';
 import 'package:foodapp/src/widgets/order_card.dart';
 

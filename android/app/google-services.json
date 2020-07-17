@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "156527459015",
+    "firebase_url": "https://fooddelivery-7571a.firebaseio.com",
+    "project_id": "fooddelivery-7571a",
+    "storage_bucket": "fooddelivery-7571a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156527459015:android:e4f97d79fe795d115d1ce2",
+        "android_client_info": {
+          "package_name": "com.meheraj.foodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156527459015-v0jre0minosp31qooes9p3fd5i727gid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.meheraj.foodapp",
+            "certificate_hash": "23ffc0a8fa845b432c68f26a6d280aa606fafd7a"
+          }
+        },
+        {
+          "client_id": "156527459015-v8kl3g36r8dmvvbnpj9kullaattk9cgq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKTPNapU6ANiiQn1l39QKaZNrfK6F1ZGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156527459015-v8kl3g36r8dmvvbnpj9kullaattk9cgq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,15 @@
 
 A new Flutter application.
 
+## Screenshots
+![HomePage](/screenshots/ss1.png?raw=true "Optional Title")
+
+
+![Order Page](/screenshots/ss2.png?raw=true "Optional Title")
+
+
+![Profile Page](/screenshots/ss3.png?raw=true "Optional Title")
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
